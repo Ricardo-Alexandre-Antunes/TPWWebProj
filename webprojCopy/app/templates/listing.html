@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h4>{{ type }}</h4>
+{% for item in data %}
+    {% if type == "Books" %} 
+        <li>
+            <a href="/detailedBook/{{ item.id }}"><strong>{{ item.title }}</strong></a>        
+            <form action="{% url 'buy_book' item.id %}">
+              {% csrf_token %}
+              <button type="submit">Buy</button>
+            </form>
+        </li>
+
+    {% elif type == "Authors" %}
+        <li><a href="/detailedAuthor/{{ item.id }}"><strong>{{ item.name }}</strong></a></li>
+    {% elif type == "Publishers" %}
+        <li><a href="/detailedPublisher/{{ item.id }}"><strong>{{ item.name }}</strong></a></li>
+    {% endif %}
+{% endfor %}
+
+
+{% endblock %}

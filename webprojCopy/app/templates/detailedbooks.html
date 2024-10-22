@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>{{ book.title }}</h1><br/>
+    <strong>Data de publicação:</strong> {{ book.date }}<br/>
+    <strong>Autores: </strong><br/>
+    {% for author in book.author.all %}
+        <li><a href="/authorDetails/{{ author.id }}" >{{author.name}}</a></li>
+    {% endfor %}
+    <strong>Publicadora:</strong> {{ book.publisher }}
+{% endblock %}
